@@ -10,7 +10,7 @@ r.square <- function(y_actual, y_predict) {
 
 # Directories for loading datasets and saving models
 train_dir <- '/path/to/Training data folder [trainingData]/'
-model_dir <- '/path/to/savedModels/'
+model_dir <- '/path/to/savedModels/' # Make sure this directory exists. You need to create it if it does not exist.
 
 # List all training dataset files
 training_files <- list.files(train_dir, pattern = '.rds', full.names = TRUE)

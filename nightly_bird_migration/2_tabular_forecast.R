@@ -4,7 +4,7 @@ library(weathermetrics)
 
 model_dir <- "/path/to/savedModels/"
 nam_dir <- '/path/to/Nam & Terrestrial data combined [NAM-Land_Combined]/'
-raw_forecast_dir <- '/path/to/tabular forecast [NAM_nightly_RawForecast]/'
+raw_forecast_dir <- '/path/to/tabular forecast [NAM_nightly_RawForecast]/' # Make sure this directory exists. You need to create it if it does not exist.
 
 years <- as.integer(list.files(nam.dir))
 

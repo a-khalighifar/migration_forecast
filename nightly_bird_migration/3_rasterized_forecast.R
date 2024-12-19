@@ -3,7 +3,7 @@ library(terra)
 
 # Define directories and template
 raw_forecast_dir <- '/path/to/tabular forecast [NAM_nightly_RawForecast]/'
-rast_forecast_dir <- '/path/to/rasterized forecast [Rasterized_forecast]/'
+rast_forecast_dir <- '/path/to/rasterized forecast [Rasterized_forecast]/' # Make sure this directory exists. You need to create it if it does not exist.
 ebird <- rast('/path/to/ebird_raster_template.tif')
 years <- list.files(raw_forecast_dir)
 

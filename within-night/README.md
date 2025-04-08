@@ -4,7 +4,7 @@ This repository accompanies the research presented in the Jimenez et al. paper. 
 
 ## Input data requirements for model_training
 
-To use the scripts in this repository, you will need the data stored in [link]. Due to the large size of the input datasets (hundreds of GB), we have only included a subset of the data for the year 2012. However, the download_processing scripts can be used to download and process the additional years of data used in our study (2012-2022). 
+To use the scripts in this repository, you will need the data stored on FigShare [https://figshare.com/articles/dataset/Within-night_training_data/28755569]. Due to the large size of the input datasets (hundreds of GB), we have only included a subset of the data for the year 2012. However, the download_processing scripts can be used to download and process the additional years of data used in our study (2012-2022). 
 
 We used the following folder structure for our pipeline and recommend this structure for best results:
 ## 📁 Data Folder Structure

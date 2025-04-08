@@ -1,15 +1,84 @@
-# High-Resolution Nightly Bird Migration Forecasts Using Radar (NEXRAD), Weather, and Terrestrial Data
+# Weather surveillance radar as a tool for studying the dynamic drivers of migratory bird transitions between terrestrial and aerial habitats
 
-This repository accompanies the research presented in the Jimenez & Khalighifar, et al. paper. This repository contains the scripts and codebase for training and deploying an ensemble of 25 models to predict bird migration patterns across the U.S. at high spatial and temporal resolution. By integrating radar (NEXRAD) data with weather and terrestrial factors, these models enable real-time, detailed forecasts of bird migration activity. The goal is to aid in tracking migratory behavior and advancing conservation efforts for migratory birds. Perfect for anyone interested in understanding and protecting migratory birds.
+This repository accompanies the research presented in the Jimenez et al. paper. This repository contains the scripts and codebase for downloading/processing data, and training and deploying gradient boosted trees that analyze the associations between bird migration intensity and predictor variables. By integrating radar (NEXRAD) data with weather and terrestrial factors within 2-hour segments, we are able to assess changes in these associations within a single migration night, as birds transition between terrestrial and atmospheric habitat. 
 
-## Input data requirements
+## Input data requirements for model_training
 
-To use the scripts in this repository, you will need the following input data:
-1.	**Training Data**
-Located in the `trainingData` folder. This contains variables spanning 10 years, split into 25 smaller datasets.
-2.	**Forecasting Data**
-A dataset combining weather and terrestrial factors, stored in the `NAM-Land_Combined` folder. This is used to forecast bird migration for selected nights in the study.
-3.	**eBird Raster Template**
-A raster template required for data alignment and modeling.
+To use the scripts in this repository, you will need the data stored in [link]. Due to the large size of the input datasets (hundreds of GB), we have only included a subset of the data for the year 2012. However, the download_processing scripts can be used to download and process the additional years of data used in our study (2012-2022). 
 
-**Note**: Due to the large size of the input datasets (hundreds of GB), these files are not included in the repository. Kyle Horton at Colorado State University (kyle.horton@colostate.edu) is the point of contact and is responsible for providing access to these data upon request.
+We used the following folder structure for our pipeline and recommend this structure for best results:
+
+data/
+├── 01_cell-coordinates/                   # spatial coordinates for analysis grid cells
+├── 02_Radar_Atm_combined_Annual/         # annual radar and atmospheric predictor data
+│   ├── 2012/
+│   ├── 2013/
+│   ├── 2014/
+│   ├── 2015/
+│   ├── 2016/
+│   ├── 2017/
+│   ├── 2018/
+│   ├── 2019/
+│   ├── 2020/
+│   ├── 2021/
+│   └── 2022/
+├── 03_randomSamplingPoints/              # randomly sampled background/pseudo-absence data
+│   ├── 2012/
+│   ├── 2013/
+│   ├── 2014/
+│   ├── 2015/
+│   ├── 2016/
+│   ├── 2017/
+│   ├── 2018/
+│   ├── 2019/
+│   ├── 2020/
+│   ├── 2021/
+│   └── 2022/
+├── 04_trainingData/                      # processed training datasets for model input
+│   ├── 2012/
+│   ├── 2013/
+│   ├── 2014/
+│   ├── 2015/
+│   ├── 2016/
+│   ├── 2017/
+│   ├── 2018/
+│   ├── 2019/
+│   ├── 2020/
+│   ├── 2021/
+│   └── 2022/
+├── 05_savedModels/                       # trained gradient boosted tree models
+│   ├── 2012/
+│   ├── 2013/
+│   ├── 2014/
+│   ├── 2015/
+│   ├── 2016/
+│   ├── 2017/
+│   ├── 2018/
+│   ├── 2019/
+│   ├── 2020/
+│   ├── 2021/
+│   └── 2022/
+├── 06_Model_performance/                 # evaluation metrics for each model
+│   ├── 2012/
+│   ├── 2013/
+│   ├── 2014/
+│   ├── 2015/
+│   ├── 2016/
+│   ├── 2017/
+│   ├── 2018/
+│   ├── 2019/
+│   ├── 2020/
+│   ├── 2021/
+│   └── 2022/
+├── 07_FeatureImportance/                 # feature importance results per model
+│   ├── 2012/
+│   ├── 2013/
+│   ├── 2014/
+│   ├── 2015/
+│   ├── 2016/
+│   ├── 2017/
+│   ├── 2018/
+│   ├── 2019/
+│   ├── 2020/
+│   ├── 2021/
+│   └── 2022/

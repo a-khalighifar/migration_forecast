@@ -1,6 +1,22 @@
-# Weather surveillance radar as a tool for studying the dynamic drivers of migratory bird transitions between terrestrial and aerial habitats
+# Within-night variation in predictor importance highlights dynamic nature of bird migration
 
-This repository accompanies the research presented in the Jimenez et al. paper. This repository contains the scripts and codebase for downloading/processing data, and training and deploying gradient boosted trees that analyze the associations between bird migration intensity and predictor variables. By integrating radar (NEXRAD) data with weather and terrestrial factors within 2-hour segments, we are able to assess changes in these associations within a single migration night, as birds transition between terrestrial and atmospheric habitat. 
+This repository accompanies the research presented in Jimenez et al. (2026). I contains the scripts and codebase for downloading/processing data, and training and deploying gradient boosted trees that analyze the associations between bird migration intensity and predictor variables. 
+
+## Summary of scripts
+The 'download_processing' subfolder contains:
+- **EVI_full_processing.R:**
+- **NEXRAD_forecast_download.R:**
+- **landcover_full_processing.R:**
+- **pointExtraction_full_processing.R:**
+- **viirs_full_processing.R:**
+
+The 'model_training' subfolder contains:
+- **1_Sample20_makeFullData.R:**
+- **2_Training_seasonal_model.R:**
+- **3_Extract_feat-Importance.R:**
+- **4_PartialDependencePlots_loop.R**
+- **5_PartialDependencePlots_avg.R**
+- **6_PartialDependencePlots_plot.R**
 
 ## Input data requirements for model_training
 

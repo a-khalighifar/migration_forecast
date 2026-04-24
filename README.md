@@ -8,7 +8,7 @@ This repository provides the codebase used for the analyses and data visualiztio
 
 **Subfolder 'within-night' is associated with:**
 
-*Jimenez, M. F., Khalighifar, A., & Horton, K. G. (In press). Within-night variation in predictor importance highlights dynamic nature of bird migration. Ecology Letters.*
+*Jimenez, M. F., Khalighifar, A., & Horton, K. G. (In review). Within-night variation in predictor importance highlights dynamic nature of bird migration. Ecology Letters.*
 
 The README files for each provide further information on file structure, script descriptions, and data availability. 
 

@@ -1,6 +1,10 @@
 # Within-night variation in predictor importance highlights dynamic nature of bird migration
 
-This repository accompanies the research presented in Jimenez et al. (2026). It contains the scripts and codebase for downloading/processing data, and training and deploying gradient boosted trees that analyze the associations between bird migration intensity and predictor variables. 
+This repository accompanies the research presented in:
+
+*Jimenez, M. F., Khalighifar, A., & Horton, K. G. (In review). Within-night variation in predictor importance highlights dynamic nature of bird migration. Ecology Letters.*
+
+It contains the scripts and codebase for downloading/processing data, and training and deploying gradient boosted trees that analyze the associations between bird migration intensity and predictor variables. 
 
 ## Summary of scripts
 The 'download_processing' subfolder contains:

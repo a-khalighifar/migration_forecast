@@ -23,7 +23,7 @@ The 'model_training' subfolder contains:
 
 ## Input data requirements for model_training
 
-To use the scripts in this repository, you will need the data stored on FigShare [https://figshare.com/articles/dataset/Within-night_training_data/28755569]. To run sample analyses for 2012 timestep 0-2hr, download folders '01_cell-coordinates' and '02_Radar_Atm_combined_Annual' and move both into Rproject within_night data folder.  
+To use the scripts in this repository, you will need the data stored on FigShare [https://figshare.com/articles/dataset/Within-night_training_data/28755569]. To run sample analyses for 2012 timestep 0-2hr, download '02_Radar_Atm_combined_Annual' and move both into Rproject within_night data folder.  
 
 Due to the large size of the input datasets (hundreds of GB), we have only included a subset of the data for the year 2012. However, the download_processing scripts can be used to download and process the additional years of data used in our study (2012-2022). 
 

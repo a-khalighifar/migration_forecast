@@ -6,7 +6,7 @@ This repository provides the codebase used for the analyses and data visualiztio
 
 *Jimenez, M. F., Khalighifar, A., Burt, C. S., Black, C. A., Leόn-Corwin, M., Fox, A. S., ... & Horton, K. G. (2025). Integrating multi-scale terrestrial and atmospheric predictors enhances nocturnal bird migration forecasts. Ornithological Applications, 127(2), duaf001.*
 
-**Subfolder 'within-night' is associated with:**
+**Subfolder 'within_night' is associated with:**
 
 *Jimenez, M. F., Khalighifar, A., & Horton, K. G. (In review). Within-night variation in predictor importance highlights dynamic nature of bird migration. Ecology Letters.*
 

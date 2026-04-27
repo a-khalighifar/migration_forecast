@@ -112,7 +112,7 @@ data/
     - X - The longitude or easting coordinate of each point
     - Y - The latitude or northing coordinate of each point
     - *Note - we also include coordinates for points at varying distances and directions from each sampling point, denoted in the header title (e.g. X.75.N = longitude coordinate for point 75km north of a given sampling point).
-- **2012.rds** This sample dataframe includes the full suite of predictor variables for sampling points in 2012 across all radars in our analysis. Atmospheric variable names include ALTITUDINAL specification (variable.ALTITUDE) and distant variable names include DIRECTION and DISTANCE specifications (variable_DISTANCEDIRECTION). Further details on each of these predictors and how they were calculated can be found in the manuscript specified above. Fields include:
+- **2012.rds:** This sample dataframe includes the full suite of predictor variables for sampling points in 2012 across all radars in our analysis. Atmospheric variable names include ALTITUDINAL specification (variable.ALTITUDE) and distant variable names include DIRECTION and DISTANCE specifications (variable_DISTANCEDIRECTION). Further details on each of these predictors and how they were calculated can be found in the manuscript specified above. Fields include:
     - Unique.ID - Unique identifier for each sampling point.
     - Radar.Stations - Unique 4-letter alpha code for radar site
     - X/Y, Lat/Lon - Sampling point location

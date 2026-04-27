@@ -21,21 +21,17 @@ The 'model_training' subfolder contains:
 - **4_PartialDependencePlots_loop.R** This script computes partial dependence plots (PDPs) for all predictor variables across each of the 10 trained spring and fall LightGBM models. For each variable, it steps through 20 quantile-based grid values, substitutes that value across a subsampled dataset, generates predictions, and summarizes the mean and standard deviation of predicted responses at each grid point. The resulting PDP summaries are saved per model and season, and can later be averaged across the 10 rounds to produce stable, ensemble-level variable response curves.
 - **5_PartialDependencePlots_avg.R** This script aggregates the per-model PDP summaries from the previous step by reading in all 10 seasonal files, stacking them, and computing the median of each summary statistic (mean, SD, and confidence bounds) across models for each predictor-grid value combination. Using the median rather than the mean makes the ensemble PDP curves robust to any outlier models, and the results are saved as a single averaged PDP file for each season.
 
-## Input data requirements for model_training
-
-To use the scripts in this repository, you will need the data stored on FigShare [https://figshare.com/articles/dataset/Within-night_training_data/28755569]. To run sample analyses for 2012 timestep 0-2hr, download '02_Radar_Atm_combined_Annual' and move both into Rproject within_night data folder.  
-
-Due to the large size of the input datasets (hundreds of GB), we have only included a subset of the data for the year 2012. However, the download_processing scripts can be used to download and process the additional years of data used in our study (2012-2022). 
+## Summary of input data for model_training
+To use the model_training scripts in this repository, you will need the data stored on FigShare [https://figshare.com/articles/dataset/Within-night_training_data/28755569].
 
 We used the following folder structure for our pipeline and recommend this structure for best results:
-## 📁 Data Folder Structure
 
-All data used to train and evaluate the gradient boosted tree models are organized within the `data/` directory as follows:
+### 📁 Data Folder Structure
 
 ```text
 data/
-├── 01_cell-coordinates/                   # spatial coordinates for analysis grid cells
-├── 02_Radar_Atm_combined_Annual/         # annual radar and atmospheric predictor data
+├── 01_cell-coordinates/                   # spatial coordinates for analysis grid cells (~2.6mb)
+├── 02_Radar_Atm_combined_Annual/         # annual radar and atmospheric predictor data (~7.5 GB per year)
 │   ├── 2012/
 │   ├── 2013/
 │   ├── 2014/
@@ -47,7 +43,7 @@ data/
 │   ├── 2020/
 │   ├── 2021/
 │   └── 2022/
-├── 03_randomSamplingPoints/              # randomly sampled background/pseudo-absence data
+├── 03_randomSamplingPoints/              # randomly sampled background/pseudo-absence data (<5MB per year)
 │   ├── 2012/
 │   ├── 2013/
 │   ├── 2014/
@@ -59,7 +55,7 @@ data/
 │   ├── 2020/
 │   ├── 2021/
 │   └── 2022/
-├── 04_trainingData/                      # processed training datasets for model input
+├── 04_trainingData/                      # processed training datasets for model input (~150GB per year)
 │   ├── 2012/
 │   ├── 2013/
 │   ├── 2014/
@@ -71,7 +67,7 @@ data/
 │   ├── 2020/
 │   ├── 2021/
 │   └── 2022/
-├── 05_savedModels/                       # trained gradient boosted tree models
+├── 05_savedModels/                       # trained gradient boosted tree models (~5GB per year)
 │   ├── 2012/
 │   ├── 2013/
 │   ├── 2014/
@@ -83,7 +79,7 @@ data/
 │   ├── 2020/
 │   ├── 2021/
 │   └── 2022/
-├── 06_Model_performance/                 # evaluation metrics for each model
+├── 06_Model_performance/                 # evaluation metrics for each model (<5MB per year)
 │   ├── 2012/
 │   ├── 2013/
 │   ├── 2014/
@@ -108,3 +104,56 @@ data/
     ├── 2021/
     └── 2022/
 ```
+
+### Data file descriptions
+- **1_all-trainingPoints-fromStations.csv:** This csv contains includes training points for random locations within the coverage of each NEXRAD radar station. Fields include:
+    - Unique.ID - A numerical identifier for each training point
+    - Radar Station - The four-letter abbreviation for each NEXRAD radar site
+    - X - The longitude or easting coordinate of each point
+    - Y - The latitude or northing coordinate of each point
+    - *Note - we also include coordinates for points at varying distances and directions from each sampling point, denoted in the header title (e.g. X.75.N = longitude coordinate for point 75km north of a given sampling point).
+- **2012.rds** This sample dataframe includes the full suite of predictor variables for sampling points in 2012 across all radars in our analysis. Atmospheric variable names include ALTITUDINAL specification (variable.ALTITUDE) and distant variable names include DIRECTION and DISTANCE specifications (variable_DISTANCEDIRECTION). Further details on each of these predictors and how they were calculated can be found in the manuscript specified above. Fields include:
+    - Unique.ID - Unique identifier for each sampling point.
+    - Radar.Stations - Unique 4-letter alpha code for radar site
+    - X/Y, Lat/Lon - Sampling point location
+    - Date/Radar.time - Date and time in radar domain (for time-explicit predictors)
+    - SurfaceHgt - Geopotential height at sampling point (m)
+    - air - Air temperature (kelvin) at given altitude
+    - pressure - Air pressure (Pa)
+    - relative.humidity - Relative humidity (%)
+    - total.cloud.cover - Cloud cover(%)
+    - visibility - Visibility (m)
+    - msl.pressure - Mean sea level pressure (Pa)
+    - uwnd - U-wind component speed (m/s)
+    - vwind - V-wind component speed (m/s)
+    - Elevation - Elevation (m)
+    - mean.EVI - Enhanced Vegetation Index
+    - mean.VIIRS - Visible Infrared Imaging Radiometer Suite
+    - sd.EVI - Standard deviation of Enhanced Vegetation Index
+    - sd.VIIRS - Standard deviation of Visible Infrared Imaging Radiometer Suite
+    - LC.Type0 - MODIS landcover 'water bodies'
+    - LC.Type10 - MODIS landcover 'grasslands'
+    - LC.Type11 - MODIS landcover 'permanent wetlands'
+    - LC.Type13 - MODIS landcover 'Urban and Built-up Lands'
+    - LC.Type15 - MODIS landcover 'Non-Vegetated Lands'
+    - Radar.Year - Local radar year
+    - Radar.Month - Local radar month
+    - Radar.Day - Local radar day
+    - Radar.Hour - Local radar hour
+    - Radar.Minute - Local radar minute
+    - Radar.Second - Local radar second
+    - Type.Forest - Consolidated cover type 'Forest'
+    - Type.Shrubland - Consolidated cover type 'Shrubland'
+    - Type.Savanna - Consolidated cover type 'Savanna'
+    - Type.Cropland - Consolidated cover type 'Cropland '
+    - Sunset - Local radar sunset time
+    - TimeAfterSunset.Hour - Local radar time after sunset
+    - Ordinal.Date - Ordinal date
+    - Distance.Radar.km - Distance of sampling point from local radar
+
+## Recommended workflow 
+To run sample analyses for 2012 timestep 0-2hr, download '02_Radar_Atm_combined_Annual' and 1_all-trainingPoints-fromStations.csv, and move both into Rproject within_night data folder. Running this script will calculate and write subsequent dataframes to be used in subsequent script. Scripts are numbered in order of how they are to be run.  
+
+Note: Due to the large size of the input datasets (hundreds of GB), we have only included a subset of the data for the year 2012. However, the download_processing scripts can be used to download and process the additional years of data used in our study (2012-2022). Anticipated file sizes per data folder outlined above and significantly large RAM storage required for certain bottlenecks in process. 
+
+All scripts have been tested on Apple M2 Ultra (64 GB, Tahoe 26.4.1) R Version 2025.05.1+513 (2025.05.1+513). 
